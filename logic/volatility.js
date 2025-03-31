@@ -15,12 +15,13 @@ module.exports = async (days, product_id) => {
         // On enlève toutes les données sauf les prix de clôture
         const closingPrices = lastDaysCandles.map(candle => candle[4]);
 
-        // Calculate percentage changes and their mean
+        // On calcule la variation des prix de fermeture et on fait leur moyenne.
         const priceChanges = closingPrices.slice(1).map((price, i) => (price - closingPrices[i]) / closingPrices[i]);
         const meanChange = priceChanges.reduce((sum, change) => sum + change, 0) / priceChanges.length;
 
-        // On calcule la variance, puis la volatilité, soit l'écart-type
+        // On calcule la variance
         const variance = priceChanges.reduce((sum, change) => sum + Math.pow(change - meanChange, 2), 0) / priceChanges.length;
+        //Puis la volatilité, soit l'écart-type
         const volatility = Math.sqrt(variance);
 
         return volatility;

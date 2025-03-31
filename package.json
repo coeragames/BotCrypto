@@ -15,6 +15,7 @@
     "@types/node": "^18.0.6",
     "coinbase-api": "^1.0.10",
     "dotenv": "^16.4.7",
+    "fs": "^0.0.1-security",
     "technicalindicators": "^3.1.0"
   }
 }

@@ -3,7 +3,7 @@ const client = require('../api/client');
 // Calcul de la moyenne mobile (SMA ou EMA)
 module.exports = async (product_id, granularity) => {
     try {
-        // Récupérer et trier du plus récent aux plus ancien les bougies de 1 journée
+        // Récupérer et trier du plus récent aux plus ancien les bougies d'une durée déterminée par le paramètre granularity
         const candles = (await client.getProductCandles({
             product_id,
             granularity,
