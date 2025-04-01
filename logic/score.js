@@ -35,7 +35,7 @@ async function calculateDailyValues(product_id) {
 
     //Calculer le RSI 14 sur 1 jour
     const rsiDayValue = await rsi(14, dayClosePrices);
-    const normalizedRsiDayValue = rsiDayValue !== null ? (rsiDayValue - 50) * 2 : null; 
+    const normalizedRsiDayValue = rsiDayValue !== null ? ((100-rsiDayValue) - 50) * 2 : null; 
 
     //Calculer le score de l'IA
     const aiScore = Boolean(process.env.USE_AI) ? await ai(product_id) : null;
@@ -82,7 +82,7 @@ module.exports = async (product_id) => {
 
         //Calculer le RSI 14 sur 15 minutes
         const rsiMinValue = await rsi(14, minClosePrices);
-        const normalizedRsiMinValue = rsiMinValue !== null ? (rsiMinValue - 50) * 2 : null;
+        const normalizedRsiMinValue = rsiMinValue !== null ? ((100-rsiMinValue) - 50) * 2 : null;
 
         //Calculer un score total. Dans un premier temps, on fait le poids pondéré
         const totalWeight =
